@@ -91,20 +91,22 @@ flutter test
 
 Son **11 pruebas**: 10 unitarias (una o más por cada ronda de TDD) y 1 de integración que recorre una tanda completa y verifica el orden final de beneficiarios.
 
-## 🔁 Rondas de TDD
+## 🔁 Rondas de TDD (con evidencia)
 
-Cada regla se construyó con el ciclo 🔴 Rojo → 🟢 Verde → 🔵 Refactor:
+Cada regla se construyó con el ciclo 🔴 Rojo → 🟢 Verde → 🔵 Refactor. Las capturas muestran la terminal de `flutter test` en cada fase.
 
-| Ronda | Funcionalidad |
-|:---:|---|
-| 1 | Registrar una aportación válida |
-| 2 | Rechazar una aportación repetida |
-| 3 | Rechazar aportaciones de quien no es participante |
-| 4 | Detectar cuándo todos ya aportaron |
-| 5 | Cerrar la ronda y entregar el turno |
-| 6 | No cerrar la ronda si faltan aportaciones |
-| 7 | Detectar cuándo la tanda ha terminado |
-| 8 | Refactor: nombrar las condiciones como reglas de negocio |
+| Ronda | Funcionalidad | 🔴 Rojo (la prueba falla) | 🟢 Verde / 🔵 Refactor (pasa) |
+|:---:|---|:---:|:---:|
+| 1 | Registrar una aportación válida | <img src="docs/screenshots/ronda1.1.png" width="260"> | <img src="docs/screenshots/ronda1.png" width="260"> |
+| 2 | Rechazar una aportación repetida | <img src="docs/screenshots/ronda2.2.png" width="260"> | <img src="docs/screenshots/ronda2.png" width="260"> |
+| 3 | Rechazar a quien no es participante | <img src="docs/screenshots/ronda3.3.png" width="260"> | <img src="docs/screenshots/ronda3.png" width="260"> |
+| 4 | Detectar cuándo todos ya aportaron | <img src="docs/screenshots/ronda4.4.png" width="260"> | <img src="docs/screenshots/ronda4.png" width="260"> |
+| 5 | Cerrar la ronda y entregar el turno | <img src="docs/screenshots/ronda5.5.png" width="260"> | <img src="docs/screenshots/ronda5.png" width="260"> |
+| 6 | No cerrar si faltan aportaciones | — (pasa de inmediato) | <img src="docs/screenshots/ronda6.png" width="260"> |
+| 7 | Detectar cuándo la tanda terminó | <img src="docs/screenshots/ronda7.7.png" width="260"> | <img src="docs/screenshots/ronda7.png" width="260"> |
+| 8 | Refactor: nombrar las reglas de negocio | — (solo refactor) | <img src="docs/screenshots/ronda8.png" width="260"> |
+
+> **Nota sobre la Ronda 6:** la prueba pasa sin escribir código nuevo, porque el guard de la Ronda 5 ya cubría ese caso. Se conserva igualmente para proteger la regla a futuro.
 
 ## 🎯 Retos de extensión
 

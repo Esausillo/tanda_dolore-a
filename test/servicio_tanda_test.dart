@@ -18,8 +18,7 @@ Tanda _crearTandaDePrueba() {
 }
 
 void main() {
-  // Ronda 1
-  test('registrar una aportacion valida la agrega a la ronda actual', () {
+    test('registrar una aportacion valida la agrega a la ronda actual', () {
     final tanda = _crearTandaDePrueba();
     final servicio = ServicioTanda(tanda);
 
@@ -28,9 +27,7 @@ void main() {
     expect(resultado, ResultadoAportacion.registrada);
     expect(tanda.aportacionesRondaActual.contains('p1'), true);
   });
-
-  // Ronda 2
-  test('un participante no puede aportar dos veces en la misma ronda', () {
+    test('un participante no puede aportar dos veces en la misma ronda', () {
     final tanda = _crearTandaDePrueba();
     final servicio = ServicioTanda(tanda);
     servicio.registrarAportacion('p1');
@@ -39,9 +36,7 @@ void main() {
 
     expect(segundoIntento, ResultadoAportacion.yaAporto);
   });
-
-  // Ronda 3
-  test('alguien que no pertenece a la tanda no puede aportar', () {
+    test('alguien que no pertenece a la tanda no puede aportar', () {
     final tanda = _crearTandaDePrueba();
     final servicio = ServicioTanda(tanda);
 
@@ -49,9 +44,7 @@ void main() {
 
     expect(resultado, ResultadoAportacion.participanteInvalido);
   });
-
-  // Ronda 4
-  test('puedeCerrarRonda es falso si falta algun participante por aportar', () {
+    test('puedeCerrarRonda es falso si falta algun participante por aportar', () {
     final tanda = _crearTandaDePrueba();
     final servicio = ServicioTanda(tanda);
     servicio.registrarAportacion('p1');
@@ -69,9 +62,7 @@ void main() {
 
     expect(servicio.puedeCerrarRonda(), true);
   });
-
-  // Ronda 5
-  test('cerrar la ronda entrega el turno al beneficiario y avanza', () {
+    test('cerrar la ronda entrega el turno al beneficiario y avanza', () {
     final tanda = _crearTandaDePrueba(); // orden: p1, p2, p3
     final servicio = ServicioTanda(tanda);
     servicio.registrarAportacion('p1');
@@ -86,9 +77,7 @@ void main() {
     expect(tanda.turnoActual, 1);
     expect(tanda.aportacionesRondaActual.isEmpty, true);
   });
-
-  // Ronda 6
-  test('no se puede cerrar la ronda si algun participante no ha aportado', () {
+    test('no se puede cerrar la ronda si algun participante no ha aportado', () {
     final tanda = _crearTandaDePrueba();
     final servicio = ServicioTanda(tanda);
     servicio.registrarAportacion('p1');
@@ -100,9 +89,7 @@ void main() {
     expect(cierre.beneficiario, isNull);
     expect(tanda.turnoActual, 0); // no debio avanzar
   });
-
-  // Ronda 7
-  test('haTerminado es falso mientras queden turnos pendientes', () {
+    test('haTerminado es falso mientras queden turnos pendientes', () {
     final tanda = _crearTandaDePrueba();
     final servicio = ServicioTanda(tanda);
     expect(servicio.haTerminado(), false);
@@ -134,9 +121,7 @@ void main() {
 
     expect(resultado, ResultadoAportacion.tandaTerminada);
   });
-
-  // Prueba de integración
-  test('simulacion completa: 3 vecinas completan una tanda de principio a fin', () {
+    test('simulacion completa: 3 vecinas completan una tanda de principio a fin', () {
     final tanda = _crearTandaDePrueba();
     final servicio = ServicioTanda(tanda);
     final beneficiarios = <String>[];
@@ -153,4 +138,5 @@ void main() {
     expect(tanda.participantes.every((p) => p.yaRecibioTurno), true);
     expect(servicio.registrarAportacion('p1'), ResultadoAportacion.tandaTerminada);
   });
+  // aquí se irán agregando las pruebas, una ronda a la vez
 }

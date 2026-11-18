@@ -6,10 +6,7 @@ import 'resultado_cierre.dart';
 class ServicioTanda {
   final Tanda tanda;
   ServicioTanda(this.tanda);
-
-  bool haTerminado() => tanda.turnoActual >= tanda.ordenTurnos.length;
-
-  ResultadoAportacion registrarAportacion(String idParticipante) {
+          ResultadoAportacion registrarAportacion(String idParticipante) {
     if (haTerminado()) return ResultadoAportacion.tandaTerminada;
 
     final esParticipante = tanda.participantes.any((p) => p.id == idParticipante);
@@ -21,15 +18,10 @@ class ServicioTanda {
     tanda.aportacionesRondaActual.add(idParticipante);
     return ResultadoAportacion.registrada;
   }
-
-  bool puedeCerrarRonda() {
+    bool puedeCerrarRonda() {
     return tanda.participantes.every((p) => tanda.aportacionesRondaActual.contains(p.id));
   }
-
-  CierreRonda cerrarRondaYAvanzar() {
-    if (haTerminado()) {
-      return CierreRonda(ResultadoCierre.tandaYaTermino, null);
-    }
+    CierreRonda cerrarRondaYAvanzar() {
     if (!puedeCerrarRonda()) {
       return CierreRonda(ResultadoCierre.faltanAportaciones, null);
     }
@@ -43,4 +35,5 @@ class ServicioTanda {
 
     return CierreRonda(ResultadoCierre.rondaCerrada, beneficiario);
   }
+  bool haTerminado() => tanda.turnoActual >= tanda.ordenTurnos.length;
 }
